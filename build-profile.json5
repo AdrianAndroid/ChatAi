@@ -1,0 +1,41 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/Users/zhaojian/.ohos/config/auto_debug_ChatAi_com.flan.chatai_390086000108539689.cer",
+          "storePassword": "0000001A13EF130A814EE7CAFE60E5111E92619ACE85787D01F307251B80C52ED49E35FD2844C6F8F38E",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001ACF2F646F94D70083A346C4A303889B5E6BB4A51383BAC313882A3AEB12446DDE67BC5D34F6E3",
+          "profile": "/Users/zhaojian/.ohos/config/auto_debug_ChatAi_com.flan.chatai_390086000108539689.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/zhaojian/.ohos/config/auto_debug_ChatAi_com.flan.chatai_390086000108539689.p12"
+        }
+      }
+    ],
+    "compileSdkVersion": 9,
+    "compatibleSdkVersion": 9,
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
