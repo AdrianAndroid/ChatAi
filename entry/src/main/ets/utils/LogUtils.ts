@@ -7,6 +7,6 @@ class LogUtils {
 }
 
 
-const log = new LogUtils()
+const Log = new LogUtils()
 
-export default log as LogUtils
+export default Log as LogUtils

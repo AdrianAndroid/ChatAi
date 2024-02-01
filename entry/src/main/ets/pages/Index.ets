@@ -1,4 +1,6 @@
 import webSocketHelper from '../platform/spark/WebSocketHelper'
+import ChatsPage from '../view/ChatsPage'
+import SendMessage from '../view/SendMessage'
 @Entry
 @Component
 struct Index {
@@ -7,24 +9,8 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Button('测试websocket')
-          .onClick(event=>{
-            webSocketHelper.testConnect()
-          })
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-        Button('测试')
-          .width('100%')
-          .onClick((ev) => {
-            webSocketHelper.test()
-          })
-        TextInput({text: '输入文本'})
-          .backgroundColor('#F0F')
-        Button('故宫在哪儿?')
-          .onClick(value => {
-            webSocketHelper.send()
-          })
+        ChatsPage()
+        SendMessage()
       }
       .width('100%')
     }

@@ -2,7 +2,7 @@ import webSocket from '@ohos.net.webSocket';
 import hilog from '@ohos.hilog';
 import cryptoJSHelper from '../../utils/CryptoJSHelper';
 import Base64Helper from '../../utils/Base64Helper';
-import log from '../../utils/LogUtils';
+import Log from '../../utils/LogUtils';
 
 /**
  * host : 请求的主机
@@ -42,12 +42,12 @@ class Params {
     var signature = this.auth3(tmp_sha);
     var authorization_origin = this.auth4(signature);
     var authorization = this.auth5(authorization_origin);
-    log.log('date : ' + date);
-    log.log('tmp : ' + tmp);
-    log.log('tmp_sha : ' + tmp_sha);
-    log.log('signature : ' + signature);
-    log.log('authorization_origin : ' + authorization_origin);
-    log.log('authorization : ' + authorization);
+    Log.log('date : ' + date);
+    Log.log('tmp : ' + tmp);
+    Log.log('tmp_sha : ' + tmp_sha);
+    Log.log('signature : ' + signature);
+    Log.log('authorization_origin : ' + authorization_origin);
+    Log.log('authorization : ' + authorization);
     return authorization;
   }
 
@@ -117,7 +117,7 @@ class Params {
     var authorization = this.authorization(date);
     var host = this.host();
     var url = this.url(authorization, date, host);
-    log.log('url->' + url);
+    Log.log('url->' + url);
   }
 
   getUrl(): string {
@@ -125,7 +125,7 @@ class Params {
     var authorization = this.authorization(date);
     var host = this.host();
     var url = this.url(authorization, date, host);
-    log.log('url->' + url);
+    Log.log('url->' + url);
     return url;
   }
 }
@@ -134,26 +134,26 @@ class WebSocketHelper {
   ws = webSocket.createWebSocket()
 
   register(defaultIpAddress: string) {
-    log.log('defaultIpAddress:' + defaultIpAddress)
+    Log.log('defaultIpAddress:' + defaultIpAddress)
     this.ws.on('open', (err, value) => {
-      log.log("WebSocketHelper-> on open, status:" + JSON.stringify(value));
+      Log.log("WebSocketHelper-> on open, status:" + JSON.stringify(value));
       // 当收到on('open')事件时，可以通过send()方法与服务器进行通信
 
     });
     this.ws.on('message', (err, value) => {
-      log.log("WebSocketHelper-> on message, message:" + value);
+      Log.log("WebSocketHelper-> on message, message:" + value);
     });
     this.ws.on('close', (err, value) => {
-      log.log("WebSocketHelper-> on close, code is " + value.code + ", reason is " + value.reason);
+      Log.log("WebSocketHelper-> on close, code is " + value.code + ", reason is " + value.reason);
     });
     this.ws.on('error', (err) => {
-      log.log("WebSocketHelper-> on error, error:" + JSON.stringify(err));
+      Log.log("WebSocketHelper-> on error, error:" + JSON.stringify(err));
     });
     this.ws.connect(defaultIpAddress, (err, value) => {
       if (!err) {
-        log.log("WebSocketHelper-> Connected successfully. Err:" + JSON.stringify(err));
+        Log.log("WebSocketHelper-> Connected successfully. Err:" + JSON.stringify(err));
       } else {
-        log.log("WebSocketHelper-> Connection failed. Err:" + JSON.stringify(err));
+        Log.log("WebSocketHelper-> Connection failed. Err:" + JSON.stringify(err));
       }
     });
   }
@@ -165,9 +165,9 @@ class WebSocketHelper {
   send() {
     this.ws.send("故宫在哪儿?", (err, value) => {
       if (!err) {
-        log.log("Message sent successfully. Err:" + JSON.stringify(err));
+        Log.log("Message sent successfully. Err:" + JSON.stringify(err));
       } else {
-        log.log("Failed to send the message. Err:" + JSON.stringify(err));
+        Log.log("Failed to send the message. Err:" + JSON.stringify(err));
       }
     });
   }
@@ -175,35 +175,35 @@ class WebSocketHelper {
   close() {
     this.ws.close((err, value) => {
       if (!err) {
-        log.log("Connection closed successfully");
+        Log.log("Connection closed successfully");
       } else {
-        log.log("Failed to close the connection. Err: " + JSON.stringify(err));
+        Log.log("Failed to close the connection. Err: " + JSON.stringify(err));
       }
     });
   }
 
 
   testConnect() {
-    log.log('defaultIpAddress:' + '')
+    Log.log('defaultIpAddress:' + '')
     this.ws.on('open', (err, value) => {
-      log.log("WebSocketHelper-> on open, status:" + JSON.stringify(value));
+      Log.log("WebSocketHelper-> on open, status:" + JSON.stringify(value));
       // 当收到on('open')事件时，可以通过send()方法与服务器进行通信
 
     });
     this.ws.on('message', (err, value) => {
-      log.log("WebSocketHelper-> on message, message:" + value);
+      Log.log("WebSocketHelper-> on message, message:" + value);
     });
     this.ws.on('close', (err, value) => {
-      log.log("WebSocketHelper-> on close, code is " + value.code + ", reason is " + value.reason);
+      Log.log("WebSocketHelper-> on close, code is " + value.code + ", reason is " + value.reason);
     });
     this.ws.on('error', (err) => {
-      log.log("WebSocketHelper-> on error, error:" + JSON.stringify(err));
+      Log.log("WebSocketHelper-> on error, error:" + JSON.stringify(err));
     });
     this.ws.connect('192.168.0.12', (err, value) => {
       if (!err) {
-        log.log("WebSocketHelper-> Connected successfully. Err:" + JSON.stringify(err));
+        Log.log("WebSocketHelper-> Connected successfully. Err:" + JSON.stringify(err));
       } else {
-        log.log("WebSocketHelper-> Connection failed. Err:" + JSON.stringify(err));
+        Log.log("WebSocketHelper-> Connection failed. Err:" + JSON.stringify(err));
       }
       this.send()
     });

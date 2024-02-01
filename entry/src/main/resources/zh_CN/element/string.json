@@ -11,6 +11,18 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "app_name",
+      "value": "ChatAi"
+    },
+    {
+      "name": "me",
+      "value": "我"
+    },
+    {
+      "name": "server",
+      "value": "AI"
     }
   ]
 }
