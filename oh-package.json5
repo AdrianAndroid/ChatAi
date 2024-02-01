@@ -8,5 +8,9 @@
   "description": "Please describe the basic information.",
   "main": "",
   "version": "1.0.0",
-  "dependencies": {}
+  "dependencies": {
+    "@ohos/axios": "^2.1.1",
+    "@ohos/crypto-js": "^2.0.3-rc.1",
+    "@ohos/base64": "^2.0.0"
+  }
 }
