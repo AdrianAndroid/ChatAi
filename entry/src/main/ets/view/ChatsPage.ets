@@ -5,12 +5,14 @@ import { WebSocketSource } from '../model/DataSource'
 @Preview
 @Component
 export default struct ChatsPage {
-  chats: WebSocketSource = new WebSocketSource([
-    new ChatData('123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789', false),
-    new ChatData('abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz', true),
-    new ChatData('123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789', false),
-    new ChatData('abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz', true),
-    ]);
+  @Link chats: WebSocketSource
+
+  // chats: WebSocketSource = new WebSocketSource([
+  //   new ChatData('123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789', false),
+  //   new ChatData('abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz', true),
+  //   new ChatData('123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789', false),
+  //   new ChatData('abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz', true),
+  //   ]);
 
   @Builder
   ChatsMessage(name: Resource, message: string, direction: Direction) {
@@ -31,7 +33,6 @@ export default struct ChatsPage {
         .maxLines(5)
         .fontSize(20)
         .borderRadius(10)
-        .margin({ top: 20 })
         .alignSelf(ItemAlign.Start)
         .backgroundColor('#ff78dd4d')
     }
@@ -51,7 +52,6 @@ export default struct ChatsPage {
               this.ChatsMessage($r('app.string.me'), item.message, Direction.Rtl)
             }
           }
-          .padding(10)
           .width('100%')
         }, (item: ChatData, index?: number) => item.message + index)
       }.width('100%').height('100%')
