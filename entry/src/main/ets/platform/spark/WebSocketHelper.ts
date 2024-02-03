@@ -182,78 +182,19 @@ class WebSocketHelper {
         Log.log("Connection failed. Err:" + JSON.stringify(err) + " , value: " + JSON.stringify(value));
       }
     });
-    // let ws = webSocket.createWebSocket()
-    // Log.log(defaultIpAddress);
-    // let promise = ws.connect(defaultIpAddress)
-    // promise.then(() => {
-    //   var text = 'connect success！'
-    //   Log.log(text)
-    //   promptAction.showToast({ message: text, duration: 1500 })
-    // }).catch((err: Error) => {
-    //   var text = `connect fail, error:${JSON.stringify(err)}`;
-    //   Log.log(text)
-    //   promptAction.showToast({ message: text, duration: 1500 })
-    // })
-    // ws.on('open', (err, value) => {
-    //   var text = 'open 连接成功,可以聊天了！' + JSON.stringify(err) + ', ' + JSON.stringify(value)
-    //   Log.log(text)
-    //   promptAction.showToast({ message: text, duration: 1500 })
-    //   this.send(ws)
-    // })
-    // ws.on('message', (err: Error, value: Object) => {
-    //   var text = 'message ' + JSON.stringify(value) + ", " + JSON.stringify(err);
-    //   Log.info(text)
-    //   promptAction.showToast({ message: text, duration: 1500 })
-    //   //this.close()
-    // })
-    // ws.on('close', (err: Error, value: Object) => {
-    //   var text = 'close ' + JSON.stringify(value) + JSON.stringify(err)
-    //   Log.info(text)
-    //   promptAction.showToast({ message: text, duration: 1500 })
-    // })
-    // ws.on('error', (err: Error) => {
-    //   var text = 'error' + JSON.stringify(err);
-    //   Log.log(text)
-    //   promptAction.showToast({ message: text, duration: 1500 })
-    // })
   }
 
-  // register(defaultIpAddress: string) {
-  //   let ws = webSocket.createWebSocket()
-  //   Log.log(defaultIpAddress);
-  //   let promise = ws.connect(defaultIpAddress)
-  //   promise.then(() => {
-  //     var text = 'connect success！'
-  //     Log.log(text)
-  //     promptAction.showToast({ message: text, duration: 1500 })
-  //   }).catch((err: Error) => {
-  //     var text = `connect fail, error:${JSON.stringify(err)}`;
-  //     Log.log(text)
-  //     promptAction.showToast({ message: text, duration: 1500 })
-  //   })
-  //   ws.on('open', (err, value) => {
-  //     var text = 'open 连接成功,可以聊天了！' + JSON.stringify(err) + ', ' + JSON.stringify(value)
-  //     Log.log(text)
-  //     promptAction.showToast({ message: text, duration: 1500 })
-  //     this.send(ws)
-  //   })
-  //   ws.on('message', (err: Error, value: Object) => {
-  //     var text = 'message ' + JSON.stringify(value) + ", " + JSON.stringify(err);
-  //     Log.info(text)
-  //     promptAction.showToast({ message: text, duration: 1500 })
-  //     //this.close()
-  //   })
-  //   ws.on('close', (err: Error, value: Object) => {
-  //     var text = 'close ' + JSON.stringify(value) + JSON.stringify(err)
-  //     Log.info(text)
-  //     promptAction.showToast({ message: text, duration: 1500 })
-  //   })
-  //   ws.on('error', (err: Error) => {
-  //     var text = 'error' + JSON.stringify(err);
-  //     Log.log(text)
-  //     promptAction.showToast({ message: text, duration: 1500 })
-  //   })
-  // }
+  // 日志
+  // on open, status:{"status":101,"message":""}
+  // Message sent successfully
+  // on message, message:{"header":{"code":0,"message":"Success","sid":"cht000b702a@dx18d6fb9d758b894540","status":0},"payload":{"choices":{"status":0,"seq":0,"text":[{"content":"您","role":"assistant","index":0}]}}}
+  // on message, message:{"header":{"code":0,"message":"Success","sid":"cht000b702a@dx18d6fb9d758b894540","status":1},"payload":{"choices":{"status":1,"seq":1,"text":[{"content":"可以通过以下","role":"assistant","index":0}]}}}
+  // on message, message:{"header":{"code":0,"message":"Success","sid":"cht000b702a@dx18d6fb9d758b894540","status":1},"payload":{"choices":{"status":1,"seq":2,"text":[{"content":"方式学习鸿","role":"assistant","index":0}]}}}
+  // on message, message:{"header":{"code":0,"message":"Success","sid":"cht000b702a@dx18d6fb9d758b894540","status":1},"payload":{"choices":{"status":1,"seq":3,"text":[{"content":"蒙开发：\n","role":"assistant","index":0}]}}}
+  // on message, message:{"header":{"code":0,"message":"Success","sid":"cht000b702a@dx18d6fb9d758b894540","status":1},"payload":{"choices":{"status":1,"seq":4,"text":[{"content":"\n1. 阅读华为官网提供的开发者文档、API参考、示例代码、Codelabs、视频教程等。这些资料可以帮助您快速掌握HarmonyOS应用开发的基础知识和技能。\n\n2.","role":"assistant","index":0}]}}}
+  // on message, message:{"header":{"code":0,"message":"Success","sid":"cht000b702a@dx18d6fb9d758b894540","status":1},"payload":{"choices":{"status":1,"seq":5,"text":[{"content":" 观看HarmonyOS第一课，这是一个提供ArkTS语言声明式开发范式的应用开发视频教程，适合无经验和有经验的开发者学习。课程涵盖了应用程序框架、 ArkUI、 ArkUI之属性动画、从简单页面开始到实践课等多个主题。\n\n","role":"assistant","index":0}]}}}
+  // on message, message:{"header":{"code":0,"message":"Success","sid":"cht000b702a@dx18d6fb9d758b894540","status":2},"payload":{"choices":{"status":2,"seq":6,"text":[{"content":"3. 使用DevEco Studio进行开发，这是华为官方推荐的开发工具之一。DevEco Studio提供了丰富的开发工具和环境搭建，以及如何使用DevEco Studio开发应用的详细介绍。","role":"assistant","index":0}]},"usage":{"text":{"question_tokens":37,"prompt_tokens":37,"completion_tokens":169,"total_tokens":206}}}}
+  // on close, code is 1000, reason is close this ws conn
 
   test() {
     this.register(params.getUrl());
