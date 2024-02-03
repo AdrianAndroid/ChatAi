@@ -1,4 +1,4 @@
-import {Base64} from '@ohos/base64'
+import { Base64 } from '@ohos/base64'
 import hidebug from '@ohos.hidebug'
 
 /**
@@ -32,7 +32,12 @@ class Base64Helper {
     console.log('Base64Helper-encode: ' + encode.toLocaleString());
     return encode;
   }
+
+  stringToBytes(text: string): Uint8Array {
+    return Base64.stringToBytes(text)
+  }
 }
 
 const base64Helper = new Base64Helper()
+
 export default base64Helper as Base64Helper

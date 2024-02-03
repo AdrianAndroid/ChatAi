@@ -19,8 +19,8 @@ class CryptoJSHelper {
     return CryptoJS.MD5(text);
   }
 
-  hMacSHA1(message: string, secretPassphrase: string): string {
-    return CryptoJS.HmacSHA1(message, secretPassphrase);
+  HmacSHA256(message: string, secretPassphrase: string): string {
+    return CryptoJS.HmacSHA256(message, secretPassphrase);
   }
 }
 

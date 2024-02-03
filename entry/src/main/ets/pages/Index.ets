@@ -11,9 +11,9 @@ struct Index {
   @State chats: WebSocketSource = new WebSocketSource([])
 
   sendMessage() {
-     let sendMessage = new ChatData(this.message, false);
+    let sendMessage = new ChatData(this.message, false);
     this.chats.pushData(sendMessage);
-    let revMessage =new ChatData('你好', true);
+    let revMessage = new ChatData('你好', true);
     this.chats.pushData(revMessage)
     this.message = '';
   }
@@ -21,6 +21,10 @@ struct Index {
   build() {
     Row() {
       Column() {
+        Button('测试')
+          .onClick(value => {
+            webSocketHelper.test()
+          })
         ChatsPage({ chats: $chats })
         SendMessage({ message: $message, sendMessage: () => {
           this.sendMessage()
