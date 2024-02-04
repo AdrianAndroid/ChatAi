@@ -59,9 +59,9 @@ class BasicDataSource implements IDataSource {
 }
 
 export class WebSocketSource extends BasicDataSource {
-  public chatsData: Array<string | ChatData>
+  public chatsData: Array<ChatData>
 
-  constructor(chatsData: Array<string|ChatData>) {
+  constructor(chatsData: Array<ChatData>) {
     super();
     this.chatsData = chatsData;
   }
@@ -70,17 +70,21 @@ export class WebSocketSource extends BasicDataSource {
     return this.chatsData.length;
   }
 
-  getData(index: number): string | ChatData {
+  getData(index: number): ChatData {
     return this.chatsData[index];
   }
 
-  addData(index: number, data: string | ChatData): void {
+  addData(index: number, data: ChatData): void {
     this.chatsData.splice(index, 0, data)
     this.notifyDataAdd(index)
   }
 
-  pushData(data: string | ChatData): void {
+  pushData(data: ChatData): void {
     this.chatsData.push(data)
     this.notifyDataAdd(this.chatsData.length - 1)
+  }
+
+  pop(): ChatData {
+    return this.chatsData.pop()
   }
 }

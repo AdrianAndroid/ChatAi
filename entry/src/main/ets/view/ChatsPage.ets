@@ -30,14 +30,15 @@ export default struct ChatsPage {
         .textOverflow({ overflow: TextOverflow.Clip })
         .padding(10)
         .width('80%')
-        .maxLines(5)
-        .fontSize(20)
+        // .maxLines(5)
+        .fontSize(10)
         .borderRadius(10)
         .alignSelf(ItemAlign.Start)
         .backgroundColor('#ff78dd4d')
     }
     .width(ALL_PERCENT)
     .direction(direction)
+    .alignItems(VerticalAlign.Top)
     .margin({top: 5, bottom: 10})
   }
 

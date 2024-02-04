@@ -6,4 +6,5 @@ export default class ChatData {
     this.message = message;
     this.isServer = isServer;
   }
+
 }

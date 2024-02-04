@@ -5,6 +5,7 @@ import Log from '../utils/LogUtils'
 @Component
 export default struct SendMessage {
   @Link message: string
+  @Link loading: boolean
   private sendMessage: () => void = () => {
   }
 
@@ -18,7 +19,9 @@ export default struct SendMessage {
         })
         .layoutWeight(1)
       Button('Send')
+        .enabled(!this.loading)
         .width(100)
+        .backgroundColor(this.loading ? '#f1f3f3' : '#0d74ee')
         .onClick(() => {
           Log.log('send')
           this.sendMessage()

@@ -140,7 +140,7 @@ class Params {
 }
 
 class WebSocketHelper {
-  register(defaultIpAddress: string) {
+  private register(defaultIpAddress: string) {
     let ws = webSocket.createWebSocket();
     Log.log('defaultIpAddress: ' + defaultIpAddress);
     ws.on('open', (err, value) => {
@@ -200,7 +200,60 @@ class WebSocketHelper {
     this.register(params.getUrl());
   }
 
-  send(ws) {
+  question(msg: string, onMessage: (text: string) => void, onOpen: () => void, onClose: () => void) {
+    let defaultIpAddress = params.getUrl();
+    let ws = webSocket.createWebSocket();
+    Log.log('defaultIpAddress: ' + defaultIpAddress);
+    ws.on('open', (err, value) => {
+      Log.log("on open, status:" + JSON.stringify(value));
+      // 当收到on('open')事件时，可以通过send()方法与服务器进行通信
+      let v = `{"header":{"app_id":"6d73e094","uid":"12345ddd"},"parameter":{"chat":{"domain":"general","temperature":1,"max_tokens":1024}},"payload":{"message":{"text":[{"role":"user","content":"${msg}"}]}}}`
+      onOpen()
+      ws.send(v, (err, value) => {
+        if (!err) {
+          Log.log("Message sent successfully");
+        } else {
+          Log.log("Failed to send the message. Err:" + JSON.stringify(err));
+        }
+      });
+    });
+    ws.on('message', (err, value) => {
+      if (err) return;
+      //Log.log("on message, message:" + value);
+      // {"header":{"code":0,"message":"Success","sid":"cht000bef42@dx18d727e2bfc9a4b540","status":0},"payload":{"choices":{"status":0,"seq":0,"text":[{"content":"在","role":"assistant","index":0}]}}}
+      let obj = JSON.parse("" + value)
+      let text: string = obj.payload.choices.text[0].content;
+      Log.log("on message, message:" + text + " , org : " + text);
+      onMessage(text)
+      // 当收到服务器的`bye`消息时（此消息字段仅为示意，具体字段需要与服务器协商），主动断开连接
+      // if (value === 'bye') {
+      //   ws.close((err, value) => {
+      //     if (!err) {
+      //       Log.log("Connection closed successfully");
+      //     } else {
+      //       Log.log("Failed to close the connection. Err: " + JSON.stringify(err));
+      //     }
+      //   });
+      // }
+    });
+    ws.on('close', (err, value) => {
+      onClose()
+      Log.log("on close, code is " + value.code + ", reason is " + value.reason);
+    });
+    ws.on('error', (err) => {
+      onClose()
+      Log.log("on error, error:" + JSON.stringify(err));
+    });
+    ws.connect(defaultIpAddress, (err, value) => {
+      if (!err) {
+        Log.log("Connected successfully Err:" + JSON.stringify(err) + " , value: " + JSON.stringify(value));
+      } else {
+        Log.log("Connection failed. Err:" + JSON.stringify(err) + " , value: " + JSON.stringify(value));
+      }
+    });
+  }
+
+  private send(ws) {
     let v = '{"header":{"app_id":"6d73e094","uid":"12345ddd"},"parameter":{"chat":{"domain":"general","temperature":1,"max_tokens":1024}},"payload":{"message":{"text":[{"role":"user","content":"怎样学习鸿蒙开发"}]}}}'
     ws.send(v, (err, value) => {
       if (!err) {
@@ -211,7 +264,7 @@ class WebSocketHelper {
     });
   }
 
-  close() {
+  private close() {
     // this.ws.close((err, value) => {
     //   if (!err) {
     //     Log.log("Connection closed successfully");
@@ -222,7 +275,7 @@ class WebSocketHelper {
   }
 
 
-  testConnect() {
+  private testConnect() {
     // let promise = this.ws.connect('192.168.0.12:8181')
     // promise.then(() => {
     //   promptAction.showToast({ message: 'connect success！', duration: 1500 })
