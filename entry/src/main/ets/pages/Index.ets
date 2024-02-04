@@ -3,6 +3,7 @@ import promptAction from '@ohos.promptAction'
 import ChatData from '../model/ChatData'
 import { WebSocketSource } from '../model/DataSource'
 import { Platform } from '../platform/Platform'
+import { PlatformHelper } from '../platform/PlatformHelper'
 import { SparkPlatform } from '../platform/spark/SparkPlatform'
 import webSocketHelper from '../platform/spark/WebSocketHelper'
 import Log from '../utils/LogUtils'
@@ -32,8 +33,7 @@ struct Index {
     }
     this.chats.pushData(new ChatData(this.message, false))
     this.chats.pushData(this.chatData)
-    let platform: Platform = new SparkPlatform()
-    platform.question(this.message, this.onMessage.bind(this), this.onOpen.bind(this), this.onClose.bind(this))
+    PlatformHelper.createPlatform().question(this.message, this.onMessage.bind(this), this.onOpen.bind(this), this.onClose.bind(this))
     this.message = '';
   }
   // 水浒传中108单八将,每个人的名字
